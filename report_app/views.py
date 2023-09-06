@@ -9,13 +9,13 @@ def spreadsheet(request):
         if begin=='0':
             begin = get_dates().first()['date']
         if end=='0':
-            end = get_dates().last()['date']
+            end = get_dates().last()['date'].strftime('%Y-%m-%d')
 
         ctx = { 
             'dataset': report_data(begin, end), 
             'transaction_dates': get_dates(),
-            'begin': get_dates().first()['date'],
-            'end': get_dates().last()['date'],
+            'begin': begin,
+            'end': end,
         }
         return render(request, 'spreadsheet.html', ctx)
     else:
