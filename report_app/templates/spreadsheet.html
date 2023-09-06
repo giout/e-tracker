@@ -2,27 +2,38 @@
 
 {% block content %}
 <div class="main-container mt-4">
-    <div class="filter-container rounded bg-danger">
-        <select class="form select-input rounded filter">
-            <option value="">
-                2021
-            </option>
-            <option value="">
-                2022
-            </option>
-        </select>
-        <select class="form select-input rounded filter">
-            <option value="">
-                2023
-            </option>
-        </select>
-        <button type="submit" class="custom-button filter-button rounded">
-            Search
-        </button>
-    </div>
+    <form action="{% url 'spreadsheet' %}" method="POST">
+        {% csrf_token %}
+        <div class="filter-container rounded bg-danger">
+            <select class="form select-input rounded filter" name="begin-date">
+                <option value="0">
+                    ...
+                </option>
+                {% for transaction_date in transaction_dates %}
+                <option value="{{transaction_date.date}}">
+                    {{transaction_date.date}}
+                </option>
+                {% endfor %}
+            </select>
+            <select class="form select-input rounded filter" name="end-date">
+                <option value="0">
+                    ...
+                </option>
+                
+                {% for transaction_date in transaction_dates %}
+                <option value="{{transaction_date.date}}">
+                    {{transaction_date.date}}
+                </option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="custom-button filter-button rounded">
+                Search
+            </button>
+        </div>
+    </form>
     <div id="spreadsheet-container" class="bg-danger">
         <div id="spreadsheet-title-container" class="d-flex justify-content-between align-items-center">
-            <p id="spreadsheet-title">Spreadsheet ("" - "")</p>
+            <p id="spreadsheet-title">Spreadsheet ({{begin}} - {{end}})</p>
             <div class="bg-danger d-flex justify-content-center align-items-center" id="icon-container">
                 <i class="bi bi-printer-fill"></i>
             </div>
@@ -30,76 +41,17 @@
         <div id="table-container" class="scroll rounded">
             <table id="spreadsheet">
                 <tr>
-                    <th>Head</th>
-                    <th>Head</th>
-                    <th>Head</th>
+                    <th>Category</th>
+                    <th>Total amount</th>
+                    <th>Percentage</th>
                 </tr>
+                {% for data in dataset %}
                 <tr>
-                    <td>Body</td>
-                    <td>Body</td>
-                    <td>Body</td>
+                    <td>{{data.category__description}}</td>
+                    <td>{{data.total_amount}}</td>
+                    <td>{{data.percentage}}</td>
                 </tr>
-                <tr>
-                    <td>Body</td>
-                    <td>Body</td>
-                    <td>Body</td>
-                </tr>
-                <tr>
-                    <td>Body</td>
-                    <td>Body</td>
-                    <td>Body</td>
-                </tr>
-                <tr>
-                    <td>Body</td>
-                    <td>Body</td>
-                    <td>Body</td>
-                </tr>
-                <tr>
-                    <td>Body</td>
-                    <td>Body</td>
-                    <td>Body</td>
-                </tr>
-                <tr>
-                    <td>Body</td>
-                    <td>Body</td>
-                    <td>Body</td>
-                </tr>
-                <tr>
-                    <td>Body</td>
-                    <td>Body</td>
-                    <td>Body</td>
-                </tr>
-                <tr>
-                    <td>Body</td>
-                    <td>Body</td>
-                    <td>Body</td>
-                </tr>
-                <tr>
-                    <td>Body</td>
-                    <td>Body</td>
-                    <td>Body</td>
-                </tr>
-                <tr>
-                    <td>Body</td>
-                    <td>Body</td>
-                    <td>Body</td>
-                </tr>
-                <tr>
-                    <td>Body</td>
-                    <td>Body</td>
-                    <td>Body</td>
-                </tr>
-                <tr>
-                    <td>Body</td>
-                    <td>Body</td>
-                    <td>Body</td>
-                </tr>
-                <tr>
-                    <td>Body</td>
-                    <td>Body</td>
-                    <td>Body</td>
-                </tr>
-                
+                {% endfor %}
             </table>
         </div>
     </div>

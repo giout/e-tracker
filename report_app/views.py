@@ -1,8 +1,32 @@
 from django.shortcuts import render
-
+from .services import get_dates, report_data
 
 def spreadsheet(request):
-    return render(request, 'spreadsheet.html')
+    if request.method == 'POST':
+        begin = request.POST['begin-date']
+        end = request.POST['end-date']
+
+        if begin=='0':
+            begin = get_dates().first()['date']
+        if end=='0':
+            end = get_dates().last()['date']
+
+        ctx = { 
+            'dataset': report_data(begin, end), 
+            'transaction_dates': get_dates(),
+            'begin': get_dates().first()['date'],
+            'end': get_dates().last()['date'],
+        }
+        return render(request, 'spreadsheet.html', ctx)
+    else:
+        # by default, spreadsheet prints data from every date
+        ctx = { 
+            'dataset': report_data(), 
+            'transaction_dates': get_dates(),
+            'begin': '...',
+            'end': '...',
+        }
+        return render(request, 'spreadsheet.html', ctx)
 
 
 def  chart(request):
