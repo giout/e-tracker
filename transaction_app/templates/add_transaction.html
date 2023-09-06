@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="bg-danger w-50 h-50 rounded d-flex justify-content-center align-items-center flex-column">
+    <form action="" class="d-flex align-items-center justify-content-center flex-column w-100 h-100">
+        <p class="form label mb-0">Add new <strong>transaction</strong></p>
+        <div id="input-grid" class="mb-2">
+            <input id="input-amount" type="number" class="rounded mb-2 form custom-input" placeholder="Amount...">
+            <div class="d-flex justify-content-center align-items-center">
+                <p class="label">$</p>
+            </div>
+        </div>
+        <select class="form select-input mb-2 rounded">
+            <option value="">
+                Pets
+            </option>
+            <option value="">
+                Food
+            </option>
+        </select>
+        <button type="submit" class="rounded form custom-button">Submit</button>  
+    </form>
+</div>
+{% endblock %}

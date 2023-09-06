@@ -1,0 +1,36 @@
+#chart-container {
+    width: 100%;
+    height: 75%;
+    display: grid;
+    grid-template-rows: 100%;
+    grid-template-columns: 50% 47.5%;
+    gap: 2.5%;
+}
+#chart{
+    width: 50%;
+    height: 75%;
+}
+
+#percentage-table {
+    width: 70%;
+    height: 100%;
+}
+
+.legend {
+    width: 100%;
+    height: 10%;
+    display: grid;
+    grid-template-rows: 100%;
+    grid-template-columns: 10% 85%;
+    gap: 5%;
+    padding: 2%;
+}
+
+.legend-text-container {
+    display: flex;
+    align-items: center;
+}
+
+.legend-text {
+    color: white;
+}

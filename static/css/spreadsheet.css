@@ -1,0 +1,53 @@
+#spreadsheet-container {
+    width: 100%;
+    height: 75%;
+    display:grid;
+    grid-template-rows: 10% 85%;
+    grid-template-columns: 100%;
+    gap: 5%;
+}
+
+#table-container {
+    width: 100%;
+    height: 90%;
+    background: transparent;
+}
+
+#spreadsheet-title-container {
+    margin: 2%;
+    width: 96%;
+    height: 100%;
+}
+
+#spreadsheet-title {
+    color: white;
+    font-size: 175%;
+}
+
+#spreadsheet {
+    width: 100%;
+    color: white;
+    font-size: 125%;
+}
+
+#spreadsheet tr td {
+    border: 2px solid #dc3545;
+    background-color: white;
+    color: #dc3545;
+}
+
+#spreadsheet tr td:hover {
+    color: white;
+    background: transparent;
+}
+
+#icon-container {
+    width: 5%;
+    height: 100%;
+}
+
+i {
+    color: white;
+    cursor: pointer;
+    font-size: 200%;
+}

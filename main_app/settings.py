@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'category_app.apps.CategoryAppConfig',
     'transaction_app.apps.TransactionAppConfig',
+    'report_app',
 ]
 
 MIDDLEWARE = [
