@@ -1,6 +1,7 @@
 from django.db.models import Sum
 from transaction_app.models import Transaction
 from category_app.models import Category
+from .utils import get_random_colors
 
 def get_dates():
     # obtaining all registered dates
@@ -31,8 +32,12 @@ def report_data(begin_date='0', end_date='0'):
     for data in dataset:
         total = total + data['total_amount']
     
-    for data in dataset: 
-        percentage = (data['total_amount'] * 100)/total
-        data['percentage'] = round(percentage, 2)
+    # every element of the dataset will contain a unique color
+    length = len(dataset) 
+    colors = get_random_colors(length)
+    for i in range(length): 
+        percentage = (dataset[i]['total_amount'] * 100)/total
+        dataset[i]['percentage'] = round(percentage, 2)
+        dataset[i]['color'] = colors[i]
 
     return dataset

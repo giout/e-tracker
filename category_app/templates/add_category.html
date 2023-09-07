@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% block title %} Add new category {% endblock %}
 {% block content %}
 <div class="bg-danger w-50 h-50 rounded d-flex justify-content-center align-items-center flex-column">
     <form action="{% url 'add_category' %}" method="POST" class="d-flex align-items-center justify-content-center flex-column w-100 h-100">

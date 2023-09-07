@@ -1,5 +1,18 @@
 const chart = document.getElementById('chart')
 
+// obtaining colors from DOM (legend panel)
+const legendColors = document.getElementsByClassName('legend-color')
+const colors = Array.from(legendColors).map(legend => {
+  return legend.style.backgroundColor
+})
+
+// obtaining each percentage
+const percentageHeaders = document.getElementsByClassName('percentage')
+const percentages = Array.from(percentageHeaders).map(percentage => {
+  return percentage.innerHTML
+})
+
+
 if (chart) {
     const ctx = chart.getContext('2d')
 
@@ -7,12 +20,8 @@ if (chart) {
         type: 'doughnut',
         data: {
             datasets: [{
-              data: [300, 50, 100],
-              backgroundColor: [
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)'
-              ],
+              data: percentages,
+              backgroundColor: colors
             }]
         }
     })

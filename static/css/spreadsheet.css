@@ -51,3 +51,8 @@ i {
     cursor: pointer;
     font-size: 200%;
 }
+
+#icon-btn {
+    border: none;
+    background: transparent;
+}

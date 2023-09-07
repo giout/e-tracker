@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% block title %} Spreadsheet report {% endblock %}
 {% block content %}
 <div class="main-container mt-4">
     <form action="{% url 'spreadsheet' %}" method="POST">
@@ -32,12 +32,16 @@
         </div>
     </form>
     <div id="spreadsheet-container" class="bg-danger">
+        <form action="{% url 'csv' begin end %}" method="GET">
         <div id="spreadsheet-title-container" class="d-flex justify-content-between align-items-center">
             <p id="spreadsheet-title">Spreadsheet ({{begin}} - {{end}})</p>
             <div class="bg-danger d-flex justify-content-center align-items-center" id="icon-container">
-                <i class="bi bi-printer-fill"></i>
+                <button type="submit" id="icon-btn">
+                    <i class="bi bi-download"></i>
+                </button>
             </div>
         </div>
+        </form>
         <div id="table-container" class="scroll rounded">
             <table id="spreadsheet">
                 <tr>

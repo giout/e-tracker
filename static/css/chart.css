@@ -34,3 +34,7 @@
 .legend-text {
     color: white;
 }
+
+#line {
+    border: 0.1rem white solid;
+}
