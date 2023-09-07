@@ -25,7 +25,6 @@ SECRET_KEY = 'django-insecure-mllm&yu_*xzc6b6v6mx1wp3dy*k9+h5p#daduk0qf93vm&!(i!
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = []
 
 
@@ -41,6 +40,7 @@ INSTALLED_APPS = [
     'category_app.apps.CategoryAppConfig',
     'transaction_app.apps.TransactionAppConfig',
     'report_app',
+    'auth_app',
 ]
 
 MIDDLEWARE = [

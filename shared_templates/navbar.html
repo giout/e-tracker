@@ -3,6 +3,7 @@
       <a class="navbar-brand text-light" href="#">E-Tracker</a>
         </ul>
         <ul class="navbar-nav mb-2 mb-lg-0">
+            {% if user.is_authenticated %}
             <li>
                 <span class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-light" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -29,9 +30,21 @@
             </li>
             <li>
                 <span class="nav-item ml-3">
-                    <a class="nav-link text-light" href="" aria-expanded="false">Log out</a>
+                    <a class="nav-link text-light" href="{% url 'logout_view' %}" aria-expanded="false">Log out</a>
                 </span>
             </li>
+            {% else %}
+            <li>
+              <span class="nav-item ml-3">
+                  <a class="nav-link text-light" href="{% url 'signup_view' %}" aria-expanded="false">Sign up</a>
+              </span>
+            </li>
+            <li>
+              <span class="nav-item ml-3">
+                  <a class="nav-link text-light" href="{% url 'login_view' %}" aria-expanded="false">Log in</a>
+              </span>
+            </li>
+            {% endif %}
         </ul>
       </div>
     </div>

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %} E-Tracker {% endblock %}
+{% block content %}
+{% if error_auth %}
+<div class="alert alert-danger bg-danger text-light mb-3" role="alert">
+    User or password is wrong
+</div>
+{% endif %}
+<div class="bg-danger d-flex justify-content-center align-items-center rounded" id="login-form">
+    <form action="{% url 'login_view' %}" method="POST" class="d-flex align-items-center justify-content-center flex-column w-100 h-100">
+        {% csrf_token %}
+        <p class="label">Log in...</p>
+        <input type="text" name="username" class="rounded mb-2 form custom-input" placeholder="Username...">
+        <input type="password" name="password" class="rounded mb-2 form custom-input" placeholder="Password...">
+        <button type="submit" class="rounded form custom-button">Submit</button>  
+    </form>
+</div>
+{% endblock %}

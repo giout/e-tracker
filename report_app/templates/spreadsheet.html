@@ -34,7 +34,7 @@
     <div id="spreadsheet-container" class="bg-danger">
         <form action="{% url 'csv' begin end %}" method="GET">
         <div id="spreadsheet-title-container" class="d-flex justify-content-between align-items-center">
-            <p id="spreadsheet-title">Spreadsheet ({{begin}} - {{end}})</p>
+            <p id="spreadsheet-title">{{user.username}}'s spreadsheet ({{begin}} - {{end}})</p>
             <div class="bg-danger d-flex justify-content-center align-items-center" id="icon-container">
                 <button type="submit" id="icon-btn">
                     <i class="bi bi-download"></i>

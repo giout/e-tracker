@@ -1,4 +1,3 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 
-def index(request):
-    return redirect('add_transaction')
+# Create your views here.
