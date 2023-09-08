@@ -33,7 +33,7 @@
     <div id="chart-container">
         <div class="d-flex justify-content-center align-items-center">
             <div class="rounded scroll bg-danger" id="percentage-table">
-                <h3 class="legend-text">{{user.username}}'s chart</h3>
+                <h3 class="legend-text">{{user.username}}'s expenses</h3>
                 <h3 class="legend-text">({{begin}} - {{end}})</h3>
                 <hr id="line"> 
                 {% for data in dataset %}
@@ -41,7 +41,7 @@
                     <div class="rounded legend-color" style="background-color: {{data.color}}"></div>
                     <div class="legend-text-container">
                         <h4 class="legend-text">
-                            {{data.category__description}} (<h4 class="legend-text percentage">{{data.percentage}}</h4><h4 class="legend-text">)</h4>
+                            {{data.category__description}} (<h4 class="legend-text percentage">{{data.percentage}}</h4><h4 class="legend-text">%)</h4>
                         </h4>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .services import get_dates, report_data
 from django.http import HttpResponse
 import csv as csv_module
@@ -9,24 +9,26 @@ def report_context(request):
         end = request.POST['end-date']
 
         if begin=='0':
-            begin = get_dates().first()['date']
+            begin = get_dates(request).first()['date']
         if end=='0':
-            end = get_dates().last()['date'].strftime('%Y-%m-%d')
+            end = get_dates(request).last()['date'].strftime('%Y-%m-%d')
 
         return {
-            'dataset': report_data(begin, end), 
-            'transaction_dates': get_dates(),
+            'dataset': report_data(request, begin, end), 
+            'transaction_dates': get_dates(request),
             'begin': begin,
             'end': end
         }
 
     else:
         # by default, any report prints data from every date
+        begin = get_dates(request).first()['date']
+        end = get_dates(request).last()['date'].strftime('%Y-%m-%d')
         return { 
-            'dataset': report_data(), 
-            'transaction_dates': get_dates(),
-            'begin': '...',
-            'end': '...'
+            'dataset': report_data(request), 
+            'transaction_dates': get_dates(request),
+            'begin': begin,
+            'end': end
         }
 
 
@@ -35,7 +37,7 @@ def export_csv(begin_date, end_date):
         ['Category', 'Total Amount', 'Percentage']
     ]
     # obtaining filtered data 
-    dataset = report_data(begin_date, end_date)
+    dataset = report_data(request, begin_date, end_date)
     for data in dataset:
         csv_data.append(
             [
@@ -48,13 +50,18 @@ def export_csv(begin_date, end_date):
 
 
 def spreadsheet(request):
-    ctx = report_context(request)
-    return render(request, 'spreadsheet.html', ctx)
-
+    if request.user.is_authenticated:
+        ctx = report_context(request)
+        return render(request, 'spreadsheet.html', ctx)
+    else:
+        return redirect('login_view')
 
 def chart(request):
-    ctx = report_context(request)
-    return render(request, 'chart.html', ctx)
+    if request.user.is_authenticated:
+        ctx = report_context(request)
+        return render(request, 'chart.html', ctx)
+    else:
+        return redirect('login_view')
 
 def csv(request, begin, end):
     data = export_csv(begin, end)

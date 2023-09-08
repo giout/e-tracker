@@ -15,6 +15,9 @@
         <input type="password" name="password" class="rounded mb-2 form custom-input" placeholder="Password...">
         <input type="password" name="confirm-password" class="rounded mb-2 form custom-input" placeholder="Confirm password...">
         <button type="submit" class="rounded form custom-button">Submit</button>  
+        <p class="text-light mt-2"> 
+            Have an account already? <a class="text-light" href="{% url 'login_view' %}"><u>Log in</u></a> 
+        </p>
     </form>
 </div>
 {% endblock %}

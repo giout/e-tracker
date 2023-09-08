@@ -3,9 +3,9 @@ from transaction_app.models import Transaction
 from category_app.models import Category
 from .utils import get_random_colors
 
-def get_dates():
+def get_dates(request):
     # obtaining all registered dates
-    dataset = Transaction.objects.values('date').distinct().order_by('date')
+    dataset = Transaction.objects.filter(user_id=request.user.id).values('date').distinct().order_by('date')
 
     for data in dataset:
         data['date'] = data['date'].strftime('%Y-%m-%d')
@@ -13,9 +13,10 @@ def get_dates():
     return dataset
 
 
-def report_data(begin_date='0', end_date='0'):
-    transactions = Transaction.objects
+def report_data(request, begin_date='0', end_date='0'):
+    transactions = Transaction.objects.filter(user_id=request.user.id)
 
+    # filtering data by date
     if begin_date=='0' and end_date=='0':
         data = transactions
     elif begin_date=='0': 
@@ -25,6 +26,7 @@ def report_data(begin_date='0', end_date='0'):
     else:
         data = transactions.filter(date__range=[begin_date, end_date])
 
+    # obtaining transaction's category
     dataset = data.values('category__description').annotate(total_amount=Sum('amount')).order_by('category__description')
 
     # filtering all transactions by date, grouping by category, displaying total amount and percentage

@@ -13,6 +13,9 @@
         <input type="text" name="username" class="rounded mb-2 form custom-input" placeholder="Username...">
         <input type="password" name="password" class="rounded mb-2 form custom-input" placeholder="Password...">
         <button type="submit" class="rounded form custom-button">Submit</button>  
+        <p class="text-light mt-2">
+            Don't have an account? <a class="text-light" href="{% url 'signup_view' %}"><u>Sign up</u></a>
+        </p>
     </form>
 </div>
 {% endblock %}
