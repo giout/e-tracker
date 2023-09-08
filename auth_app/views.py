@@ -55,3 +55,19 @@ def signup_view(request):
 def logout_view(request):  
     logout(request)
     return redirect('login_view')
+
+
+def reset_link_request(request):
+    return render(request, 'reset_link_request.html')
+
+
+def reset_link_sent(request):
+    return render(request, 'reset_link_sent.html')
+
+
+def reset_password(request): 
+    return render(request, 'reset_password.html')
+
+
+def verification(request):
+    return render(request, 'verification.html')

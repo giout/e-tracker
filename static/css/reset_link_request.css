@@ -1,0 +1,16 @@
+#email-request {
+    width: 75%;
+    height: 40%;
+    gap:4%;
+}
+
+#input-request {
+    width: 70%;
+    height: 15%;
+    border: none;
+}
+
+#btn-request {
+    width: 25%;
+    height: 15%;
+}

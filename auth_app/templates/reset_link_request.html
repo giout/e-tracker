@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %} Password reset {% endblock %}
+
+{% block content %} 
+<form class="bg-danger d-flex rounded justify-content-center align-items-center flex-column" id="email-request">        
+    <h3 class="text-light text-center">A verification link will be sent to your email.</h3>
+    <input type="text" id="input-request" placeholder="Email" name="email" class="custom-input rounded">
+    <input type="Submit" id="btn-request" value="Send" class="custom-button rounded">
+</form>
+{% endblock %}
