@@ -41,6 +41,10 @@ def signup_view(request):
             if password == confirm_password:
                 # user registration
                 user = User.objects.create_user(username, email, password)
+
+                # email should be verified to activate account
+                user.is_active = False
+
                 user.save()
                 login(request, user)
                 return redirect('add_transaction')
@@ -57,17 +61,3 @@ def logout_view(request):
     return redirect('login_view')
 
 
-def reset_link_request(request):
-    return render(request, 'reset_link_request.html')
-
-
-def reset_link_sent(request):
-    return render(request, 'reset_link_sent.html')
-
-
-def reset_password(request): 
-    return render(request, 'reset_password.html')
-
-
-def verification(request):
-    return render(request, 'verification.html')

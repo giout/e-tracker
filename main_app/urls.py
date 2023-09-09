@@ -24,6 +24,7 @@ urlpatterns = [
     path('transaction/', include('transaction_app.urls')),
     path('report/', include('report_app.urls')),
     path('auth/', include('auth_app.urls')),
+    path('mail/', include('mail_app.urls')),
     path('', views.index),
 ]
 
